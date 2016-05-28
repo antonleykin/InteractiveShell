@@ -1,8 +1,8 @@
-FROM mikestillman/test-macaulay2-1.8.2-0
+FROM lkastner/m2container:1.9
 MAINTAINER InteractiveShell Team <trym2@googlegroups.com>
 
 ##### M2 userland
-# RUN mkdir /home/m2user/.ssh
+RUN mkdir /home/m2user/.ssh
 COPY unix-files/ssh_config /etc/ssh/ssh_config
 COPY unix-files/sshd_config /etc/ssh/sshd_config
 RUN chown root:root /etc/ssh/ssh_config
@@ -36,3 +36,4 @@ EXPOSE 22
 
 COPY id_rsa.pub /home/m2user/.ssh/authorized_keys
 RUN chmod 644 /home/m2user/.ssh/authorized_keys
+RUN mkdir /var/run/sshd
